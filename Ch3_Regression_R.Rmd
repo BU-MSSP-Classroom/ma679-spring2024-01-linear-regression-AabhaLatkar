@@ -1,6 +1,6 @@
 ---
 title: "Regression"
-author: "Your Name"
+author: "Aabha Latkar"
 date: "2022-12-21"
 output: html_document
 ---
@@ -291,7 +291,7 @@ Here are few rules:
 - You need to explain why you added each variable.
 
 ```{r,eval=FALSE,echo=show_code}
-lmfit_2008<- # ["your model here"] # use ames_raw_2008
+lmfit_2008<- lm(ames_raw_2008$SalePrice ~ ames_raw_2008$`Gr Liv Area`+ ames_raw_2008$`1st Flr SF`+ ames_raw_2008$`Full Bath`)
 ```
 
 When you decide on your model use the following to come up with your test loss.
