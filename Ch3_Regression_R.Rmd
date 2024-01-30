@@ -2,7 +2,9 @@
 title: "Regression"
 author: "Aabha Latkar"
 date: "2022-12-21"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -291,7 +293,7 @@ Here are few rules:
 - You need to explain why you added each variable.
 
 ```{r,eval=FALSE,echo=show_code}
-lmfit_2008<- lm(ames_raw_2008$SalePrice ~ ames_raw_2008$`Gr Liv Area`+ ames_raw_2008$`1st Flr SF`+ ames_raw_2008$`Full Bath`)
+lmfit_2008<- lm(data=ames_raw_2008, ames_raw_2008$SalePrice ~ ames_raw_2008$`Gr Liv Area`+ ames_raw_2008$`1st Flr SF`+ ames_raw_2008$`Full Bath`)
 ```
 
 When you decide on your model use the following to come up with your test loss.
@@ -410,7 +412,9 @@ Please write your answer in full sentences.
 
 Your code:
 ```{r,echo=TRUE}
-#
+library(ISLR2)
+lm1 <- lm(mpg ~horsepower, data=Auto)
+summary(lm1)
 #
 ```
 
@@ -438,8 +442,9 @@ iv. What is the predicted mpg associated with a horsepower of 98? What are the a
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+plot(lm1)
+abline(lm1)
+
 ```
 
 Your answer:
@@ -455,8 +460,7 @@ Please write your answer in full sentences.
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+plot(lm1)
 ```
 
 Your answer:
@@ -472,10 +476,14 @@ Please write your answer in full sentences.
 
 (a) Produce a scatterplot matrix which includes all of the variables in the data set.
 
+```{r}
+library(MASS)
+library(ISLR2)
+```
+
 Your code:
 ```{r,echo=TRUE}
-#
-#
+pairs(Auto)
 ```
 
 Your answer:
@@ -493,8 +501,9 @@ cor() which is qualitative.
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+auto_numeric <- Auto[, sapply(Auto, is.numeric)]
+cor_matrix <- cor(auto_numeric)
+cor_matrix
 ```
 
 Your answer:
@@ -512,8 +521,8 @@ the predictors. Use the summary() function to print the results.
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+lm2 <- lm(mpg ~ ., data = Auto[, sapply(Auto, is.numeric)])
+summary(lm2)
 ```
 
 Your answer:
@@ -535,8 +544,7 @@ iii. What does the coefficient for the year variable suggest?
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+plot(lm2)
 ```
 
 Your answer:
@@ -551,8 +559,8 @@ Please write your answer in full sentences.
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+lm_model<- lm(mpg ~ horsepower * weight, data = Auto)
+
 ```
 
 Your answer:
